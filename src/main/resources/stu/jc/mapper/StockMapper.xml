@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stu.jc.mapper.StockMapper">
+
+    <select id="selectStockById" resultType="Stock">
+        select id, name, count, sold, version
+        from stock
+        where id = #{id}
+    </select>
+
+    <update id="updateStockB" parameterType="Stock">
+        update stock
+        set sold = sold + 1
+        where id = #{id}
+    </update>
+
+    <update id="updateStock" parameterType="Stock">
+        update stock
+        set sold = sold + 1,
+            version = version + 1
+        where id = #{id}
+          and version = #{version}
+    </update>
+
+</mapper>
